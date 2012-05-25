@@ -195,6 +195,7 @@
       <sprite>sprites\sMatGunpowder</sprite>
     </sprites>
     <sprite>sprites\sPlank</sprite>
+    <sprite>sprites\sGauntletTrigger</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\backgroundClouds</background>
@@ -410,11 +411,13 @@
       <object>objects\oMatWood</object>
       <object>objects\oPop</object>
     </objects>
+    <objects name="level gen">
+      <object>objects\oLevelGen</object>
+    </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\level1</room>
-    <room>rooms\level11</room>
     <room>rooms\testRoom</room>
+    <room>rooms\level1</room>
   </rooms>
   <help>
     <mimic>0</mimic>
