@@ -25,7 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>collect_chunk_num = 3
+            <string>//Set up global variables about the terrain
+global.BLOCK_WIDTH = 48;
+global.CHUNK_WIDTH = floor(window_get_width()/global.BLOCK_WIDTH);
+global.BARRI = instance_find(oPlayer1,0);
+
+latest_chunk=-1;
+
+
+/*collect_chunk_num = 3
 chunk_width = 20
 gauntlet_activate = false
 gauntlet_trigger = noone
@@ -49,7 +57,7 @@ for(i=0;i&lt;collect_chunk_num;i+=1){
         }
     }
 }
-
+*/
 
 </string>
           </argument>
@@ -73,9 +81,87 @@ for(i=0;i&lt;collect_chunk_num;i+=1){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if oPlayer1.x &gt;= gauntlet_trigger.x {
+            <string>/*if oPlayer1.x &gt;= gauntlet_trigger.x {
     gauntlet_activate = true
+}*/
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/* A "Chunk" is a single piece of the level */
+blockWidth = global.BLOCK_WIDTH;
+chunkWidth = global.CHUNK_WIDTH;
+barri = instance_find(oPlayer1,0);
+chunkPos = floor((barri.x/blockWidth)/chunkWidth);
+
+gauntletSpacing = 2;
+
+/* generate Chunks ahead */
+if((latest_chunk-1)&lt;(chunkPos)){
+    //increment the latest chunk that had been entered
+    latest_chunk +=1;
+    //start with a bedrock for non gauntlet chunks
+    type = oRandomBedrock;
+    if(latest_chunk mod gauntletSpacing == (gauntletSpacing-1)){
+        type = oSolidCoal;
+        instance_create(latest_chunk*chunkWidth*blockWidth,0,oGauntletPhase);
+    }
+    instance_create(
+        latest_chunk*chunkWidth*blockWidth,
+        room_height,
+        type
+    );
+    //create the floor for the new chunk
+    //TODO: replace this with random terrain generation based on image maps
+    for(i=0;i&lt;chunkWidth;i+=1){
+        instance_create(
+            latest_chunk*chunkWidth*blockWidth+blockWidth*i,
+            room_height-blockWidth,
+            type
+        );
+    }
+
 }
+//show_debug_message(string(latest_chunk) + " " + string(chunkPos));
+
+
+/*
+for(i=0;i&lt;collect_chunk_num;i+=1){
+    for(j=0;j&lt;chunk_width;j+=1){
+        instance_create(48*j+48*chunk_width*i,room_height-48,oRandomBedrock)
+    }
+    //show start of new collect chunk
+    instance_create(48*chunk_width*i,room_height,oRandomBedrock)
+    
+    //generate test gaunlet chunk
+    if i=collect_chunk_num-1 {
+        for(j=0;j&lt;chunk_width;j+=1){
+            instance_create(48*j+48*chunk_width*(i+1),room_height-96,oSolidCoal)
+            //show gauntlet trigger location
+            if j=14 {
+                gauntlet_trigger = instance_create(48*j+48*chunk_width*(i+1),room_height-48,oSolidCoal) 
+            }
+        }
+    }
+}
+*/
+
 </string>
           </argument>
         </arguments>
@@ -98,9 +184,9 @@ for(i=0;i&lt;collect_chunk_num;i+=1){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if gauntlet_activate = true {
+            <string>/*if gauntlet_activate = true {
     draw_sprite(sGauntletTrigger,0,gauntlet_trigger.x - 48*14, room_height - 500)
-}
+}*/
 </string>
           </argument>
         </arguments>

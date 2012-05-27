@@ -413,6 +413,7 @@
     </objects>
     <objects name="level gen">
       <object>objects\oLevelGen</object>
+      <object>objects\oGauntletPhase</object>
     </objects>
   </objects>
   <rooms name="rooms">
