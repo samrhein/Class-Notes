@@ -28,12 +28,12 @@ if player_viewposy > botbound {
 }
 
 //check if gauntlet instance exists
-if new_gauntlet != noone {
+if (global.gauntlet != noone) {
     //check if gauntlet is activated
-    if new_gauntlet.fixedCamera = true {
+    if (global.gauntlet.fixedCamera = true) {
         //set camera target based on gauntlet position
-        view_targetx = oGauntletPhase.x-24
-        view_targety = oGauntletPhase.y+496
+        view_targetx = global.gauntlet.x-24
+        view_targety = global.gauntlet.y+496
     }
 }
 

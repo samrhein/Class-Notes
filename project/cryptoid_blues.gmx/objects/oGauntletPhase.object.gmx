@@ -65,18 +65,18 @@ wallBlocks[]=0;
           <argument>
             <kind>1</kind>
             <string>if(barri.x&gt; x + global.CHUNK_WIDTH*global.BLOCK_WIDTH - 6*global.BLOCK_WIDTH &amp;&amp; !fixedCamera){
-    fixedCamera= true;
+    fixedCamera=true;
     
     //Creates Barriers for the Gauntlet //
     for(i=0;i&lt; room_height/global.BLOCK_WIDTH;i+=1){
         instance_create(x - global.BLOCK_WIDTH, i*global.BLOCK_WIDTH,oSolidCoal);
         wallBlocks[i]=instance_create(x + global.CHUNK_WIDTH * global.BLOCK_WIDTH, i*global.BLOCK_WIDTH,oSolidCoal);
         wallBlockCount+=1;
-
     }
+    
+    show_debug_message("TEST");
 }
 
-if(fixedCamera){
     //if(barri.x&lt;x);
     //TODO : How to keep the camera in place?
     
@@ -85,7 +85,7 @@ if(fixedCamera){
     //TODO : while active, spawn enemies at some rate (based on a certain amount on screen at once?)
     
     //TODO : When all enemies are defeated, set the gauntlet to complete, remove the wall blocks, destroy this object
-}
+
 
 
 </string>
@@ -110,9 +110,9 @@ if(fixedCamera){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (fixedCamera) = true {
+            <string>/*if (fixedCamera) = true {
     //draw_sprite(sGauntletTrigger,0,x, 500 )
-}
+}*/
 </string>
           </argument>
         </arguments>

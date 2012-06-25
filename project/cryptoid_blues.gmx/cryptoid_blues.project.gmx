@@ -4,7 +4,9 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\sound0</sound>
+  </sounds>
   <sprites name="sprites">
     <sprites name="Character">
       <sprite>sprites\sStandLeft</sprite>
@@ -204,6 +206,9 @@
     <sprite>sprites\sEquip</sprite>
     <sprite>sprites\sPlus</sprite>
     <sprite>sprites\sTitle</sprite>
+    <sprites name="Levels">
+      <sprite>sprites\lvlChunk_0000</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\backgroundClouds</background>
@@ -429,10 +434,20 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\level1</room>
     <room>rooms\testRoom</room>
+    <room>rooms\level1</room>
   </rooms>
   <help>
+    <mimic>-1</mimic>
+    <caption>Game Information</caption>
+    <left>-1</left>
+    <top>-1</top>
+    <width>600</width>
+    <height>400</height>
+    <border>-1</border>
+    <sizeable>-1</sizeable>
+    <ontop>0</ontop>
+    <modal>-1</modal>
     <rtf>help.rtf</rtf>
   </help>
   <TutorialState>

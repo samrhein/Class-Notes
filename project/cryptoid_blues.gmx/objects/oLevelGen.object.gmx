@@ -32,8 +32,11 @@ global.BARRI = instance_find(oPlayer1,0);
 
 latest_chunk=-1;
 
-gauntlet = noone;
+global.gauntlet = noone;
 
+
+prevLvlId = -1;
+lvlSurface = surface_create(sprite_get_width(lvlChunk_0000), sprite_get_height(lvlChunk_0000));
 
 /*collect_chunk_num = 3
 chunk_width = 20
@@ -61,6 +64,15 @@ for(i=0;i&lt;collect_chunk_num;i+=1){
 }
 */
 
+global.SPRITE_MAP = ds_map_create();
+no = sprite_create_from_screen(0,0,1,1,false,false,false,false);
+sprite_delete(no);
+for (i=0; i&lt;no; i+=1) {
+    if (sprite_exists(i)) {
+        ds_map_add(global.SPRITE_MAP,sprite_get_name(i),i);
+        show_debug_message(sprite_get_name(i));
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -99,7 +111,44 @@ if((latest_chunk-1)&lt;(chunkPos)){
     type = oRandomBedrock;
     if(latest_chunk mod gauntletSpacing == (gauntletSpacing-1)){
         type = oSolidCoal;
-        gauntlet = instance_create(latest_chunk*chunkWidth*blockWidth,0,oGauntletPhase);
+        if(global.gauntlet != noone &amp;&amp; global.gauntlet.x !=latest_chunk*chunkWidth*blockWidth || global.gauntlet == noone){
+            global.gauntlet = instance_create(latest_chunk*chunkWidth*blockWidth,0,oGauntletPhase);
+        }
+    }else{
+        //get the new sprite to draw the level from
+        newId = 0;
+        if(newId&lt;10){
+            newId = "0"+string_format(newId,1,0);
+        }else{
+            newId = string_format(newId,2,0);
+        }
+        
+        //get the set of sprites to pick from
+        newSet = 0;
+        if(newSet&lt;10){
+            newSet = "0"+string_format(newSet,1,0);
+        }else{
+            newSet = string_format(newSet,2,0);
+        }
+        
+        //draw the new chunk from the sprite
+        surface_set_target(lvlSurface);
+        draw_sprite(
+            ds_map_find_value(global.SPRITE_MAP,"lvlChunk_" + newSet + newId),
+            0,
+            0,
+            0);
+        
+        for( w=0 ; w &lt; surface_get_width(lvlSurface) ; w+=1){
+            for( h=0 ; h &lt; surface_get_height(lvlSurface) ; h+=1){
+                
+                show_debug_message( surface_getpixel(lvlSurface, w, h) );
+                
+                
+            }
+        }    
+            
+        surface_reset_target();
     }
     instance_create(
         latest_chunk*chunkWidth*blockWidth,
@@ -141,6 +190,29 @@ for(i=0;i&lt;collect_chunk_num;i+=1){
 }
 */
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_surface(lvlSurface,global.BARRI.x,global.BARRI.y)
 </string>
           </argument>
         </arguments>

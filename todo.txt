@@ -1,0 +1,4 @@
+TODO:
+- Loading levels pieces from image file
+- implement gauntlet
+- stick camera when gauntlet is active
