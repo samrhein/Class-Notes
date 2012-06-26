@@ -36,6 +36,8 @@
   <option_frequency>0</option_frequency>
   <option_frontimage>nil</option_frontimage>
   <option_fullscreen>False</option_fullscreen>
+  <option_gameguid>{55FD7CAA-3715-43F3-AEB9-848FE686CFFD}</option_gameguid>
+  <option_gameid>638919842</option_gameid>
   <option_hasloadimage>false</option_hasloadimage>
   <option_helpkey>true</option_helpkey>
   <option_html5_CreationEventOrder>true</option_html5_CreationEventOrder>

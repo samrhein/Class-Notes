@@ -207,7 +207,7 @@
     <sprite>sprites\sPlus</sprite>
     <sprite>sprites\sTitle</sprite>
     <sprites name="Levels">
-      <sprite>sprites\lvlChunk_0000</sprite>
+      <sprite>sprites\lvlChunk_000</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -438,16 +438,6 @@
     <room>rooms\level1</room>
   </rooms>
   <help>
-    <mimic>-1</mimic>
-    <caption>Game Information</caption>
-    <left>-1</left>
-    <top>-1</top>
-    <width>600</width>
-    <height>400</height>
-    <border>-1</border>
-    <sizeable>-1</sizeable>
-    <ontop>0</ontop>
-    <modal>-1</modal>
     <rtf>help.rtf</rtf>
   </help>
   <TutorialState>

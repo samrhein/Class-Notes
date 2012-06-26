@@ -28,6 +28,7 @@
             <string>//Set up global variables about the terrain
 global.BLOCK_WIDTH = 48;
 global.CHUNK_WIDTH = floor(window_get_width()/global.BLOCK_WIDTH);
+global.CHUNK_WIDTH = 25;
 global.BARRI = instance_find(oPlayer1,0);
 
 latest_chunk=-1;
@@ -36,7 +37,7 @@ global.gauntlet = noone;
 
 
 prevLvlId = -1;
-lvlSurface = surface_create(sprite_get_width(lvlChunk_0000), sprite_get_height(lvlChunk_0000));
+lvlSurface = surface_create(sprite_get_width(lvlChunk_000), sprite_get_height(lvlChunk_000));
 
 /*collect_chunk_num = 3
 chunk_width = 20
@@ -70,9 +71,11 @@ sprite_delete(no);
 for (i=0; i&lt;no; i+=1) {
     if (sprite_exists(i)) {
         ds_map_add(global.SPRITE_MAP,sprite_get_name(i),i);
-        show_debug_message(sprite_get_name(i));
     }
 }
+
+typeMap = ds_map_create();
+ds_map_add(typeMap, $000000, oSolidCoal);
 </string>
           </argument>
         </arguments>
@@ -109,48 +112,55 @@ if((latest_chunk-1)&lt;(chunkPos)){
     latest_chunk +=1;
     //start with a bedrock for non gauntlet chunks
     type = oRandomBedrock;
+    lvlHeader = "lvlChunk_";
     if(latest_chunk mod gauntletSpacing == (gauntletSpacing-1)){
         type = oSolidCoal;
         if(global.gauntlet != noone &amp;&amp; global.gauntlet.x !=latest_chunk*chunkWidth*blockWidth || global.gauntlet == noone){
             global.gauntlet = instance_create(latest_chunk*chunkWidth*blockWidth,0,oGauntletPhase);
         }
+        //lvlHeader = "gntChunk_";
     }else{
-        //get the new sprite to draw the level from
-        newId = 0;
-        if(newId&lt;10){
-            newId = "0"+string_format(newId,1,0);
-        }else{
-            newId = string_format(newId,2,0);
-        }
-        
-        //get the set of sprites to pick from
-        newSet = 0;
-        if(newSet&lt;10){
-            newSet = "0"+string_format(newSet,1,0);
-        }else{
-            newSet = string_format(newSet,2,0);
-        }
-        
-        //draw the new chunk from the sprite
-        surface_set_target(lvlSurface);
-        draw_sprite(
-            ds_map_find_value(global.SPRITE_MAP,"lvlChunk_" + newSet + newId),
-            0,
-            0,
-            0);
-        
-        for( w=0 ; w &lt; surface_get_width(lvlSurface) ; w+=1){
-            for( h=0 ; h &lt; surface_get_height(lvlSurface) ; h+=1){
-                
-                show_debug_message( surface_getpixel(lvlSurface, w, h) );
-                
-                
-            }
-        }    
-            
-        surface_reset_target();
     }
-    instance_create(
+    
+    //get the set of sprites to pick from
+    newSet = 0;
+    if(newSet&lt;10){
+        newSet = "00" + string_format(newSet,1,0);
+    }else if(newSet&lt;100){
+        newSet = "0" + string_format(newSet,2,0);
+    }else{
+        newSet = string_format(newSet,2,0);
+    }
+
+    //draw the new chunk from the sprite
+    surface_set_target(lvlSurface);
+    spr = ds_map_find_value(global.SPRITE_MAP,lvlHeader + newSet);
+    
+    newId = random(sprite_get_number(spr));
+    draw_sprite(
+        spr,
+        newId,
+        0,
+        0);
+    //show_debug_message(string(sprite_get_number(spr)));
+    
+    for( w=0 ; w &lt; surface_get_width(lvlSurface) ; w+=1){
+        for( h=0 ; h &lt; surface_get_height(lvlSurface) ; h+=1){
+            
+            if(surface_getpixel(lvlSurface, w, h) == $ffffff){
+                continue;
+            }else{
+                instance_create(
+                    latest_chunk*chunkWidth*blockWidth+blockWidth*w,
+                    blockWidth*h,
+                    type
+                );
+            }
+        }
+    }
+        
+    surface_reset_target();
+    /*instance_create(
         latest_chunk*chunkWidth*blockWidth,
         room_height,
         type
@@ -163,7 +173,7 @@ if((latest_chunk-1)&lt;(chunkPos)){
             room_height-blockWidth,
             type
         );
-    }
+    }*/
 
 }
 //show_debug_message(string(latest_chunk) + " " + string(chunkPos));
