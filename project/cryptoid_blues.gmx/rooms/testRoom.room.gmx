@@ -40,7 +40,7 @@
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
   </backgrounds>
   <views>
-    <view visible="-1" objName="&lt;undefined&gt;" xview="0" yview="0" wview="900" hview="500" xport="0" yport="0" wport="900" hport="500" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="-1" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1102" hview="620" xport="0" yport="0" wport="1102" hport="620" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
@@ -50,15 +50,15 @@
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance index="62" objName="oPlayer1" x="144" y="672" name="inst_D5A75918" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
-    <instance index="136" objName="oLevelGen" x="48" y="48" name="inst_E766FCF0" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
-    <instance index="136" objName="oLevelGen" x="48" y="48" name="inst_C8B43F51" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
-    <instance index="136" objName="oLevelGen" x="48" y="48" name="inst_FA68E7E9" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
-    <instance index="136" objName="oLevelGen" x="48" y="48" name="inst_A8E7B17B" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
-    <instance index="136" objName="oLevelGen" x="48" y="48" name="inst_0C1419ED" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
-    <instance index="135" objName="oPop" x="2928" y="672" name="inst_1B3F904A" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
-    <instance index="135" objName="oPop" x="2928" y="672" name="inst_3AA73127" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
-    <instance index="135" objName="oPop" x="2928" y="672" name="inst_9DF15D17" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
+    <instance index="64" objName="oPlayer1" x="144" y="672" name="inst_D5A75918" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
+    <instance index="138" objName="oLevelGen" x="48" y="48" name="inst_E766FCF0" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
+    <instance index="138" objName="oLevelGen" x="48" y="48" name="inst_C8B43F51" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
+    <instance index="138" objName="oLevelGen" x="48" y="48" name="inst_FA68E7E9" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
+    <instance index="138" objName="oLevelGen" x="48" y="48" name="inst_A8E7B17B" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
+    <instance index="138" objName="oLevelGen" x="48" y="48" name="inst_0C1419ED" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
+    <instance index="137" objName="oPop" x="2928" y="672" name="inst_1B3F904A" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
+    <instance index="137" objName="oPop" x="2928" y="672" name="inst_3AA73127" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
+    <instance index="137" objName="oPop" x="2928" y="672" name="inst_9DF15D17" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
     <instance index="0" objName="oGame" x="0" y="0" name="inst_953B0D25" locked="0" code="" scaleX="1" scaleY="1" colour="-1" rotation="0"/>
   </instances>
   <tiles/>

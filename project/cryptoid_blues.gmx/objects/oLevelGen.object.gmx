@@ -32,6 +32,8 @@ global.BARRI = instance_find(oPlayer1,0);
 
 latest_chunk=-1;
 
+gauntlet = noone;
+
 
 /*collect_chunk_num = 3
 chunk_width = 20
@@ -81,29 +83,6 @@ for(i=0;i&lt;collect_chunk_num;i+=1){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*if oPlayer1.x &gt;= gauntlet_trigger.x {
-    gauntlet_activate = true
-}*/
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>/* A "Chunk" is a single piece of the level */
 blockWidth = global.BLOCK_WIDTH;
 chunkWidth = global.CHUNK_WIDTH;
@@ -120,7 +99,7 @@ if((latest_chunk-1)&lt;(chunkPos)){
     type = oRandomBedrock;
     if(latest_chunk mod gauntletSpacing == (gauntletSpacing-1)){
         type = oSolidCoal;
-        instance_create(latest_chunk*chunkWidth*blockWidth,0,oGauntletPhase);
+        gauntlet = instance_create(latest_chunk*chunkWidth*blockWidth,0,oGauntletPhase);
     }
     instance_create(
         latest_chunk*chunkWidth*blockWidth,
@@ -162,31 +141,6 @@ for(i=0;i&lt;collect_chunk_num;i+=1){
 }
 */
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/*if gauntlet_activate = true {
-    draw_sprite(sGauntletTrigger,0,gauntlet_trigger.x - 48*14, room_height - 500)
-}*/
 </string>
           </argument>
         </arguments>

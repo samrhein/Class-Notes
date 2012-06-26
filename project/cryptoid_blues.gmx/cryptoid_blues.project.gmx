@@ -196,6 +196,14 @@
     </sprites>
     <sprite>sprites\sPlank</sprite>
     <sprite>sprites\sGauntletTrigger</sprite>
+    <sprite>sprites\sStick</sprite>
+    <sprite>sprites\sJump</sprite>
+    <sprite>sprites\sUse</sprite>
+    <sprite>sprites\sDig</sprite>
+    <sprite>sprites\sBuild</sprite>
+    <sprite>sprites\sEquip</sprite>
+    <sprite>sprites\sPlus</sprite>
+    <sprite>sprites\sTitle</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\backgroundClouds</background>
@@ -250,10 +258,12 @@
       <script>scripts\isCollisionHangRight.gml</script>
     </scripts>
     <script>scripts\collision_circle_r.gml</script>
+    <script>scripts\cameraControl.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
     <font>fonts\munro</font>
+    <font>fonts\munroMed</font>
     <font>fonts\munroBig</font>
   </fonts>
   <objects name="objects">
@@ -266,6 +276,7 @@
       <object>objects\oPlatform</object>
       <object>objects\oSolid</object>
       <object>objects\oWater</object>
+      <object>objects\oWaterShallow</object>
       <object>objects\oDestructible</object>
       <object>objects\oDestructibleTerrain</object>
       <object>objects\oDestructibleSlopeRight</object>
@@ -282,6 +293,7 @@
       <object>objects\oBloodSpurt</object>
       <object>objects\oMatCollect</object>
       <object>objects\oPhysicsDebug</object>
+      <object>objects\oControls</object>
     </objects>
     <objects name="enemies">
       <object>objects\oSquirrel</object>
@@ -417,20 +429,10 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\testRoom</room>
     <room>rooms\level1</room>
+    <room>rooms\testRoom</room>
   </rooms>
   <help>
-    <mimic>0</mimic>
-    <caption>Game Information</caption>
-    <left>-1</left>
-    <top>-1</top>
-    <width>600</width>
-    <height>400</height>
-    <border>-1</border>
-    <sizeable>-1</sizeable>
-    <ontop>0</ontop>
-    <modal>-1</modal>
     <rtf>help.rtf</rtf>
   </help>
   <TutorialState>

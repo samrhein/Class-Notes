@@ -37,6 +37,12 @@ draw_set_halign( fa_right )
 kSelectedBuild = 0
 kSelectedEquipWeap = 0
 kSelectedEquipTool = 0
+
+kBuild = 0
+kEquipWeap = 0
+
+buildTime = 0
+equipWeapTime = 0
 </string>
           </argument>
         </arguments>
@@ -59,9 +65,37 @@ kSelectedEquipTool = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>kSelectedBuild = keyboard_check(ord('Z'))
-kSelectedEquipWeap = keyboard_check(ord('X'))
-kSelectedEquipTool = keyboard_check(ord('C'))
+            <string>kBuild = keyboard_check(ord('X'))
+kEquipWeap = keyboard_check_pressed(ord('Z'))
+//kSelectedEquipTool = keyboard_check(ord('C'))
+
+/*
+    if kBuild = 1 {
+        buildTime += 1
+        kSelectedBuild = 1
+    }
+    if buildTime = 2 or buildTime = 0 or kSelectedEquipWeap = 1 {
+        kSelectedBuild = 0
+        buildTime = 0
+    }
+*/
+
+if kBuild = 1
+    kSelectedBuild = 1
+else {
+    kSelectedBuild = 0
+}
+
+/*
+    if kEquipWeap = 1 {
+        equipWeapTime += 1
+        kSelectedEquipWeap = 1
+    }
+    if equipWeapTime = 2 or equipWeapTime = 0 or kSelectedBuild = 1 {
+        kSelectedEquipWeap = 0
+        equipWeapTime = 0
+    }
+*/
 </string>
           </argument>
         </arguments>
@@ -105,6 +139,7 @@ for(i=0;i&lt;oPlayer1.picture_num;i+=1) {
 
 // draw current FPS
 draw_text(view_xview[0]+global.winW-30,view_yview[0]+global.winH-30, "FPS " +string(fps))
+
 </string>
           </argument>
         </arguments>

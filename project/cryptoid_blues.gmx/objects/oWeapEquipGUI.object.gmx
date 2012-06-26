@@ -67,6 +67,7 @@ selected = 0
     equip_weap[i].y=view_yview[0]+12
 }
 
+/*
 move_left = keyboard_check_pressed(ord('A'))
 move_right = keyboard_check_pressed(ord('D'))
 
@@ -85,6 +86,7 @@ if oNewGUI.kSelectedEquipWeap and oNewGUI.kSelectedBuild = 0 and oNewGUI.kSelect
             equip_slot[i].highlight = false
         }
     }
+     
     //loops selected
     if selected &gt; 4 {
         selected = 0
@@ -104,7 +106,40 @@ if oNewGUI.kSelectedEquipWeap and oNewGUI.kSelectedBuild = 0 and oNewGUI.kSelect
         selected = 0
     }
     
+}*/
+
+
+///////////////simple equip system for arcade backpack/////////////////////
+if keyboard_key &gt;= ord('1') and keyboard_key &lt;= ord('5')
+    selected = real(chr(keyboard_key))-1
+
+if oNewGUI.kEquipWeap
+    selected += 1
+     
+for(i=0;i&lt;5;i+=1){
+    equip_slot[i].highlight = false
 }
+     
+//loops selected
+if selected &gt; 4 {
+    selected = 0
+}
+if selected &lt; 0 {
+    selected = 4
+}
+
+//highlights selected
+equip_slot[selected].highlight = true
+
+    
+    if selected!=0 and oPlayer1.inventory[selected+9] = 0 {
+        for(i=0;i&lt;5;i+=1){
+            equip_slot[i].highlight = false
+        }
+        equip_slot[0].highlight = true
+        selected = 0
+    }
+
 </string>
           </argument>
         </arguments>
@@ -127,14 +162,14 @@ if oNewGUI.kSelectedEquipWeap and oNewGUI.kSelectedBuild = 0 and oNewGUI.kSelect
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>/*
 if oNewGUI.kSelectedEquipWeap and oNewGUI.kSelectedBuild = 0 and oNewGUI.kSelectedEquipTool = 0 {
     draw_set_blend_mode( bm_add )
     draw_sprite(sHighlight2,0,view_xview[0]+9,view_yview[0]+9)
     draw_set_halign( fa_left )
     draw_set_color( make_color_rgb(60,60,60))
     draw_text( view_xview[0]+18, view_yview[0]+55, string('Equip Item'))
-}
+}*/
 
 draw_set_halign( fa_right )
 draw_set_color( c_white )
@@ -142,6 +177,7 @@ draw_set_blend_mode( bm_normal )
 for(i=0;i&lt;4;i+=1) {
     draw_text( view_xview[0]+56+54+i*54, view_yview[0]+26, string(oPlayer1.inventory[i+10]))
 }
+
 </string>
           </argument>
         </arguments>

@@ -91,10 +91,10 @@ inventory[1]=5 //gunpowder
 inventory[2]=5 //wood
 inventory[3]=5 //iron
 //weapons
-inventory[10]=5 //boomerang
-inventory[11]=5 //dynomite
-inventory[12]=5 //spikes
-inventory[13]=5 //crate
+inventory[10]=7 //boomerang
+inventory[11]=7 //dynomite
+inventory[12]=7 //spikes
+inventory[13]=7 //crate
 
 
 //the keys that the platform character will use (don't edit)

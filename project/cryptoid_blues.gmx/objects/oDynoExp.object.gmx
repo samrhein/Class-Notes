@@ -65,7 +65,7 @@
         for (i = 1; i &lt;= global.circle_result[0]; i += 1) {
            in_blast_stuff = global.circle_result[i];
            with in_blast_stuff {
-                physics_apply_force(x,y,0,-30)
+                physics_apply_force(x,y,0,-40)
            }
         }
     }
@@ -73,11 +73,22 @@
         for (i = 1; i &lt;= global.circle_result[0]; i += 1) {
            in_blast_movdes = global.circle_result[i];
            with in_blast_movdes {
-                physics_apply_force(x,y,0,-800)
+                physics_apply_force(x,y,0,-1000)
            }
         }
     }
-
+    if (collision_circle_r( x, y, 160, oMoveableSolid, false, true)) {
+        for (i = 1; i &lt;= global.circle_result[0]; i += 1) {
+           in_blast_movsol = global.circle_result[i];
+           with in_blast_movsol {
+                physics_apply_force(x,y,0,-2000)
+           }
+        }
+    }
+    
+    if (collision_circle_r( x, y, 100, oPlayer1, false, true)) {
+        oPlayer1.hurting=true
+    }
     
 
 </string>

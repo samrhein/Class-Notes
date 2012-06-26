@@ -1,6 +1,6 @@
 firefly_system = part_system_create();
 firefly_emitter = part_emitter_create( firefly_system );
-part_emitter_region( firefly_system,firefly_emitter,48,2000,1738,1738,ps_shape_line,ps_distr_linear );
+part_emitter_region( firefly_system,firefly_emitter,48,2000,1700,1700,ps_shape_line,ps_distr_linear );
 firefly_part = part_type_create();
 
 part_type_sprite( firefly_part, sFirefly, false, false, false );
@@ -19,7 +19,7 @@ part_emitter_stream( firefly_system, firefly_emitter, firefly_part, -4 );
 
 firefly2_system = part_system_create();
 firefly2_emitter = part_emitter_create( firefly2_system );
-part_emitter_region( firefly2_system,firefly2_emitter,48,1000,50,700,ps_shape_rectangle,ps_distr_linear );
+part_emitter_region( firefly2_system,firefly2_emitter,48,1000,1000,1700,ps_shape_rectangle,ps_distr_linear );
 firefly2_part = part_type_create();
 
 part_type_sprite( firefly2_part, sFirefly, false, false, false );

@@ -111,7 +111,7 @@ if(fixedCamera){
           <argument>
             <kind>1</kind>
             <string>if (fixedCamera) = true {
-    draw_sprite(sGauntletTrigger,0,x, 500 )
+    //draw_sprite(sGauntletTrigger,0,x, 500 )
 }
 </string>
           </argument>
