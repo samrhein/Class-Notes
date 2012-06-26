@@ -1,0 +1,3 @@
+#ffffff _ ---
+#000000 a oSolidCoal
+#7D5544 b oRandomBedrock

@@ -3,6 +3,61 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
+  <datafiles number="6" name="datafiles">
+    <datafiles number="6" name="Terrain">
+      <datafile>
+        <name>colorMap.txt</name>
+        <exists>-1</exists>
+        <size>54</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>98</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>colorMap.txt</filename>
+      </datafile>
+      <datafile>
+        <name>lvlChunk_000000.terr</name>
+        <exists>-1</exists>
+        <size>652</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>98</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlChunk_000000.terr</filename>
+      </datafile>
+      <datafile>
+        <name>gntChunk_000000.terr</name>
+        <exists>-1</exists>
+        <size>652</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>98</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>gntChunk_000000.terr</filename>
+      </datafile>
+    </datafiles>
+  </datafiles>
   <NewExtensions/>
   <sounds name="sound">
     <sound>sound\sound0</sound>
@@ -212,6 +267,7 @@
   </sprites>
   <backgrounds name="background">
     <background>background\backgroundClouds</background>
+    <background>background\background1</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">

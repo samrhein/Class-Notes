@@ -73,8 +73,7 @@ wallBlocks[]=0;
         wallBlocks[i]=instance_create(x + global.CHUNK_WIDTH * global.BLOCK_WIDTH, i*global.BLOCK_WIDTH,oSolidCoal);
         wallBlockCount+=1;
     }
-    
-    show_debug_message("TEST");
+
 }
 
     //if(barri.x&lt;x);
