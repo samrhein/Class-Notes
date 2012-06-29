@@ -66,10 +66,8 @@ maxEnemies = 8;
             <kind>1</kind>
             <string>if(completed)exit;
 
-if(barri.x&gt; x + global.CHUNK_WIDTH*global.BLOCK_WIDTH - 7*global.BLOCK_WIDTH &amp;&amp; !fixedCamera &amp;&amp; !active){
+if(barri.x&gt; x + global.CHUNK_WIDTH*global.BLOCK_WIDTH - 7*global.BLOCK_WIDTH &amp;&amp; !fixedCamera &amp;&amp; !completed){
     fixedCamera=true;
-    
-    active = true;
     
     //Creates Barriers for the Gauntlet //
     for(i=0;i&lt; room_height/global.BLOCK_WIDTH;i+=1){
@@ -88,8 +86,6 @@ if(active){
             livingEnemies += 1;
         }
     }
-
-    show_debug_message(string(enemiesSpawned) + " : " + string(livingEnemies));
     
     //spawn enemies if the cap has not been reached and there are not too many enemies on screen
     if(livingEnemies &lt; maxEnemies &amp;&amp; enemiesSpawned &lt; totalEnemies){

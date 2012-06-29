@@ -4,3 +4,4 @@
 #0000ff w oWaterSolid
 #0099ff e oWaterBlue
 #ff0000 s oTree
+#00ff00 g oGauntletTrigger

@@ -260,6 +260,14 @@ if((latest_chunk-2) &lt; chunkPos){
                 global.CHUNK_HEIGHT*global.BLOCK_WIDTH,
                 oRandomBedrock
             );
+            
+            if(irandom(10) == 0){
+                instance_create(
+                    latest_chunk*chunkWidth*blockWidth+blockWidth*i,
+                    (global.CHUNK_HEIGHT/4)*global.BLOCK_WIDTH + global.BLOCK_WIDTH * irandom(3),
+                    oTreeFront
+                );
+            }
         }
         
         file_text_close(fileIndex);

@@ -8,7 +8,7 @@
       <datafile>
         <name>colorMap.txt</name>
         <exists>-1</exists>
-        <size>123</size>
+        <size>151</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -522,6 +522,8 @@
       <object>objects\oLevelGen</object>
       <object>objects\oGauntletPhase</object>
       <object>objects\oFinalPhase</object>
+      <object>objects\oGauntletTrigger</object>
+      <object>objects\oLevelTimer</object>
     </objects>
   </objects>
   <rooms name="rooms">
