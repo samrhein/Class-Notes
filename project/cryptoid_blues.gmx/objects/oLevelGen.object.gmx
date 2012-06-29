@@ -30,10 +30,16 @@ global.BLOCK_WIDTH = 48;
 global.CHUNK_WIDTH = floor(window_get_width()/global.BLOCK_WIDTH);
 global.CHUNK_WIDTH = 25;
 global.BARRI = instance_find(oPlayer1,0);
+global.CHUNK_HEIGHT = 30;
 
-latest_chunk=-1;
+first_chunk = -1;
+latest_chunk = -1;
+totalChunks = 3;
+
 
 global.gauntlet = noone;
+global.final = noone;
+
 
 prevLvlId = -1;
 lvlSurface = surface_create(sprite_get_width(lvlChunk_000), sprite_get_height(lvlChunk_000));
@@ -163,15 +169,36 @@ chunkWidth = global.CHUNK_WIDTH;
 barri = instance_find(oPlayer1,0);
 chunkPos = floor((barri.x/blockWidth)/chunkWidth);
 
-gauntletSpacing = 2;
+gauntletSpacing = 3;
 
-/* generate Chunks ahead */
-if((latest_chunk-1)&lt;(chunkPos)){
-    //increment the latest chunk that had been entered
-    latest_chunk +=1;
+/* generate Chunks two ahead */
+if((latest_chunk-2) &lt; chunkPos){
+    //create background
+    
+    down = global.BLOCK_WIDTH * 8;
+    
+    instance_create(latest_chunk*chunkWidth*blockWidth,down, oTreesMid);
+    instance_create(latest_chunk*chunkWidth*blockWidth + chunkWidth*blockWidth/2,down, oTreesMid);
+    instance_create(latest_chunk*chunkWidth*blockWidth,down, oTreesFar);
+    instance_create(latest_chunk*chunkWidth*blockWidth + chunkWidth*blockWidth/2,down, oTreesFar);
+
     //start with a bedrock for non gauntlet chunks
     lvlHeader = "lvlChunk_";
-    if(latest_chunk mod gauntletSpacing == (gauntletSpacing-1)){
+    
+    //if it's the first chunk
+    if(latest_chunk == first_chunk){
+        lvlHeader = "strtChunk_";
+    
+    //if it's time for the last chunk
+    }else if(latest_chunk == totalChunks){
+        lvlHeader = "winChunk_";
+        if(global.final==noone){
+            global.final = instance_create(latest_chunk*chunkWidth*blockWidth,0,oFinalPhase);
+        }
+        
+    //if it's time for a gauntlet phase
+    }else if(latest_chunk mod gauntletSpacing == (gauntletSpacing-1)){
+        //and it hasnt spawned a gauntlet or the spawned one is old
         if(global.gauntlet != noone &amp;&amp; global.gauntlet.x !=latest_chunk*chunkWidth*blockWidth || global.gauntlet == noone){
             global.gauntlet = instance_create(latest_chunk*chunkWidth*blockWidth,0,oGauntletPhase);
         }
@@ -201,7 +228,6 @@ if((latest_chunk-1)&lt;(chunkPos)){
     
     {
         //Code for string loading of terrain
-        //TODO : Fix this so it works from the working directory of the game, not MY desktop
         fileIndex = file_text_open_read(working_directory + "\Terrain\" + lvlHeader + newSet + newId + ".terr");
         h = 0;
         
@@ -213,7 +239,8 @@ if((latest_chunk-1)&lt;(chunkPos)){
             
             //go through every character 
             for(w = 0 ; w &lt; string_length(line) ; w+=1){
-
+                
+                //get block type for the character and place the blocks
                 block = ds_map_find_value(typeMap, string_char_at(line,w));
                 if(string_char_at(line,w)!="_"){
                     instance_create(
@@ -226,7 +253,19 @@ if((latest_chunk-1)&lt;(chunkPos)){
             h+=1;
             
         }until(file_text_eof(fileIndex));
+        //lay out bedrock at the bottom most layer
+        for(i = 0; i&lt;global.CHUNK_WIDTH; i+=1){
+            instance_create(
+                latest_chunk*chunkWidth*blockWidth+blockWidth*i,
+                global.CHUNK_HEIGHT*global.BLOCK_WIDTH,
+                oRandomBedrock
+            );
+        }
+        
         file_text_close(fileIndex);
+        
+        //increment the latest chunk that had been entered
+        latest_chunk +=1;
     }
     
     /*

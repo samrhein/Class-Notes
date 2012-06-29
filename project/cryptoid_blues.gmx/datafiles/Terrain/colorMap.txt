@@ -1,3 +1,6 @@
 #ffffff _ ---
 #000000 a oSolidCoal
 #7D5544 b oRandomBedrock
+#0000ff w oWaterSolid
+#0099ff e oWaterBlue
+#ff0000 s oTree

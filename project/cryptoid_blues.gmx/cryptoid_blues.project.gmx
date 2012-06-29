@@ -3,12 +3,12 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="6" name="datafiles">
-    <datafiles number="6" name="Terrain">
+  <datafiles number="8" name="datafiles">
+    <datafiles number="8" name="Terrain">
       <datafile>
         <name>colorMap.txt</name>
         <exists>-1</exists>
-        <size>54</size>
+        <size>123</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -55,6 +55,40 @@
           </Config>
         </ConfigOptions>
         <filename>gntChunk_000000.terr</filename>
+      </datafile>
+      <datafile>
+        <name>strtChunk_000000.terr</name>
+        <exists>-1</exists>
+        <size>652</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>98</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>strtChunk_000000.terr</filename>
+      </datafile>
+      <datafile>
+        <name>winChunk_000000.terr</name>
+        <exists>-1</exists>
+        <size>652</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>98</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>winChunk_000000.terr</filename>
       </datafile>
     </datafiles>
   </datafiles>

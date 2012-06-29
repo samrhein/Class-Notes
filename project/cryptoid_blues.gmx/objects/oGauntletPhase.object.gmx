@@ -33,7 +33,7 @@ completed = false;
 
 //Stores any of the enemies that are spawned as part of the gauntlet here
 globalvar totalEnemies;
-totalEnemies = 1;
+totalEnemies = 10;
 
 enemiesSpawned = 0;
 enemies[] = 0;
@@ -41,7 +41,7 @@ enemies[] = 0;
 wallBlockCount = 0;
 wallBlocks[] = 0;
 
-maxEnemies = 1;
+maxEnemies = 8;
 </string>
           </argument>
         </arguments>
@@ -66,15 +66,15 @@ maxEnemies = 1;
             <kind>1</kind>
             <string>if(completed)exit;
 
-if(barri.x&gt; x + global.CHUNK_WIDTH*global.BLOCK_WIDTH - 6*global.BLOCK_WIDTH &amp;&amp; !fixedCamera &amp;&amp; !active){
+if(barri.x&gt; x + global.CHUNK_WIDTH*global.BLOCK_WIDTH - 7*global.BLOCK_WIDTH &amp;&amp; !fixedCamera &amp;&amp; !active){
     fixedCamera=true;
     
     active = true;
     
     //Creates Barriers for the Gauntlet //
     for(i=0;i&lt; room_height/global.BLOCK_WIDTH;i+=1){
-        instance_create(x - global.BLOCK_WIDTH, i*global.BLOCK_WIDTH,oSolidCoal);
-        wallBlocks[i]=instance_create(x + global.CHUNK_WIDTH * global.BLOCK_WIDTH, i*global.BLOCK_WIDTH,oSolidCoal);
+        instance_create(x - global.BLOCK_WIDTH, i*global.BLOCK_WIDTH,oRandomBedrock);
+        wallBlocks[i]=instance_create(x + global.CHUNK_WIDTH * global.BLOCK_WIDTH, i*global.BLOCK_WIDTH,oRandomBedrock);
         wallBlockCount+=1;
     }
 }
@@ -89,15 +89,15 @@ if(active){
         }
     }
 
-    show_debug_message(string(livingEnemies));
+    show_debug_message(string(enemiesSpawned) + " : " + string(livingEnemies));
     
     //spawn enemies if the cap has not been reached and there are not too many enemies on screen
-    if(livingEnemies &lt; maxEnemies &amp;&amp; enemiesSpawned &lt; maxEnemies){
+    if(livingEnemies &lt; maxEnemies &amp;&amp; enemiesSpawned &lt; totalEnemies){
         if(livingEnemies &lt;= 1 || irandom(10) == 1){
-            enemies[livingEnemies]=instance_create(x + 3*global.BLOCK_WIDTH, 0,oSquirrel);
+            enemies[enemiesSpawned]=instance_create(x + 3*global.BLOCK_WIDTH, 0,oSquirrel);
             enemiesSpawned+=1;
         }
-    }else if(livingEnemies == 0 &amp;&amp; enemiesSpawned &gt;= maxEnemies){
+    }else if(livingEnemies == 0 &amp;&amp; enemiesSpawned &gt;= totalEnemies){
     //end the gauntlet mode if all enemies have been destroyed
         completed = true;
         fixedCamera = false;

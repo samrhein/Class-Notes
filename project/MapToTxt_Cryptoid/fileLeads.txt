@@ -1,2 +1,4 @@
 lvlChunk_
 gntChunk_
+winChunk_
+strtChunk_
