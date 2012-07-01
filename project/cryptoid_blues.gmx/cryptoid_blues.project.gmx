@@ -8,7 +8,7 @@
       <datafile>
         <name>colorMap.txt</name>
         <exists>-1</exists>
-        <size>151</size>
+        <size>409</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -25,7 +25,7 @@
       <datafile>
         <name>lvlChunk_000000.terr</name>
         <exists>-1</exists>
-        <size>652</size>
+        <size>782</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -42,7 +42,7 @@
       <datafile>
         <name>gntChunk_000000.terr</name>
         <exists>-1</exists>
-        <size>652</size>
+        <size>782</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -59,7 +59,7 @@
       <datafile>
         <name>strtChunk_000000.terr</name>
         <exists>-1</exists>
-        <size>652</size>
+        <size>782</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -76,7 +76,7 @@
       <datafile>
         <name>winChunk_000000.terr</name>
         <exists>-1</exists>
-        <size>652</size>
+        <size>782</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>

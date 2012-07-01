@@ -177,6 +177,7 @@ if((latest_chunk-2) &lt; chunkPos){
     
     down = global.BLOCK_WIDTH * 8;
     
+    //create trees in Background
     instance_create(latest_chunk*chunkWidth*blockWidth,down, oTreesMid);
     instance_create(latest_chunk*chunkWidth*blockWidth + chunkWidth*blockWidth/2,down, oTreesMid);
     instance_create(latest_chunk*chunkWidth*blockWidth,down, oTreesFar);
@@ -238,13 +239,13 @@ if((latest_chunk-2) &lt; chunkPos){
             file_text_readln(fileIndex);
             
             //go through every character 
-            for(w = 0 ; w &lt; string_length(line) ; w+=1){
+            for(w = 1 ; w &lt;= string_length(line) ; w+=1){
                 
                 //get block type for the character and place the blocks
                 block = ds_map_find_value(typeMap, string_char_at(line,w));
                 if(string_char_at(line,w)!="_"){
                     instance_create(
-                        latest_chunk*chunkWidth*blockWidth+blockWidth*w,
+                        latest_chunk*chunkWidth*blockWidth+blockWidth*(w-1),
                         blockWidth*h,
                         block
                     );
@@ -253,6 +254,7 @@ if((latest_chunk-2) &lt; chunkPos){
             h+=1;
             
         }until(file_text_eof(fileIndex));
+        
         //lay out bedrock at the bottom most layer
         for(i = 0; i&lt;global.CHUNK_WIDTH; i+=1){
             instance_create(
@@ -261,11 +263,21 @@ if((latest_chunk-2) &lt; chunkPos){
                 oRandomBedrock
             );
             
+            //draw cloes trees in the background
             if(irandom(10) == 0){
                 instance_create(
                     latest_chunk*chunkWidth*blockWidth+blockWidth*i,
                     (global.CHUNK_HEIGHT/4)*global.BLOCK_WIDTH + global.BLOCK_WIDTH * irandom(3),
                     oTreeFront
+                );
+            }
+            
+            //draw near trees in the background
+            if(irandom(10) == 0){
+                instance_create(
+                    latest_chunk*chunkWidth*blockWidth+blockWidth*i,
+                    down,
+                    oTreesNear
                 );
             }
         }
