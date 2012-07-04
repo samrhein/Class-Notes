@@ -32,8 +32,14 @@ if (global.gauntlet != noone) {
     //check if gauntlet is activated
     if (global.gauntlet.fixedCamera = true) {
         //set camera target based on gauntlet position
-        view_targetx = global.gauntlet.x-24
-        view_targety = global.gauntlet.y+496
+        //view_targetx = global.gauntlet.x-24
+        //view_targety = global.gauntlet.y+496
+        if player_viewposx > rightbound and view_currentx+winW >= global.gauntlet.x+global.BLOCK_WIDTH*global.CHUNK_WIDTH {
+            view_targetx=view_currentx
+        }
+        if player_viewposx < leftbound and view_currentx <= global.gauntlet.x {
+            view_targetx=view_currentx
+        }
     }
 }
 
