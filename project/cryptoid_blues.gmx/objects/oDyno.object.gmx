@@ -31,8 +31,8 @@ i=0
 
 var fix, inst;
 fix = physics_fixture_create()
-physics_fixture_set_box_shape(fix, sprite_width/2,sprite_height/2)
-physics_fixture_set_density(fix, 0.99)
+physics_fixture_set_box_shape(fix, sprite_width/2,10)
+physics_fixture_set_density(fix, 0.1)
 physics_fixture_set_friction(fix, 0.9)
 physics_fixture_set_restitution(fix, 0)
 physics_fixture_set_linear_damping(fix, 0.4)
@@ -41,6 +41,9 @@ physics_fixture_set_collision_group(fix, -1)
 inst = id
 physics_fixture_bind(fix, inst)
 physics_fixture_delete(fix)
+
+phy_rotation = -oBlockHighlight.mouse_angle
+physics_apply_local_force(0,0,40,0)
 </string>
           </argument>
         </arguments>
@@ -114,14 +117,13 @@ if fuse_timer&gt;fuse_time {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed=1
-draw_self()
+            <string>draw_self()
 draw_sprite_ext( sSparks, floor(i), x, y, image_xscale, image_yscale, -phy_rotation, image_blend, image_alpha ); 
 
-if i&gt;3 {
+if i&gt;2 {
     i=0
 } else {
-    i+=0.2
+    i+=0.4
 }
 </string>
           </argument>

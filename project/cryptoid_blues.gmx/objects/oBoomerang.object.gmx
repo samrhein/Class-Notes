@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>boom_speed = 35
+            <string>boom_speed = 40
 boom_return = 30
 
 var fix, inst;
@@ -35,11 +35,13 @@ physics_fixture_set_density(fix, 0.05)
 physics_fixture_set_restitution(fix, 0.8)
 physics_fixture_set_linear_damping(fix, 0.01)
 physics_fixture_set_angular_damping(fix, 0.01)
-physics_fixture_set_collision_group(fix, 1)
+physics_fixture_set_collision_group(fix, -1)
 inst = id
 physics_fixture_bind(fix, inst)
 physics_fixture_delete(fix)
 
+phy_rotation = -oBlockHighlight.mouse_angle
+physics_apply_local_force(0,0,boom_speed,0)
 physics_apply_torque(15)
 </string>
           </argument>
@@ -76,32 +78,23 @@ if boom_return = 0 {
 }
 
 if boom_return &lt; -150 {
+    instance_create(x,y,oPop)
     instance_destroy()
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="oPlayer1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>other.inventory[10]+=1
-instance_destroy()
+
+if boom_return &lt; 20 {
+    if physics_test_overlap(x, y, 0, oPlayer1){
+        this_item = sBoomerangIcon
+        this_item_id = ds_list_find_index(oBestGUI.item_names,this_item)
+        if oBestGUI.all_items[this_item_id,0] = 0 {
+            ds_list_add(oBestGUI.entire_inv,this_item)
+            oBestGUI.entire_inv_length = ds_list_size(oBestGUI.entire_inv)
+        }
+        oBestGUI.all_items[this_item_id,0]+=1
+        instance_create(x,y,oPop)
+        instance_destroy()
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -127,6 +120,29 @@ instance_destroy()
             <string>with other {
     instance_destroy()
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="oSolid">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//
 </string>
           </argument>
         </arguments>

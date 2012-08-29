@@ -59,9 +59,9 @@ selected = -1
             <kind>1</kind>
             <string>for(i=0;i&lt;4;i+=1){
     build_slot[i].x=view_xview[0]+24+216+54*i
-    build_slot[i].y=view_yview[0]+global.winH-60
+    build_slot[i].y=view_yview[0]+global.winH-100
     build_item[i].x=view_xview[0]+24+216+54*i
-    build_item[i].y=view_yview[0]+global.winH-60
+    build_item[i].y=view_yview[0]+global.winH-100
 }
 
 move_left = keyboard_check_pressed(ord('A'))
@@ -145,9 +145,7 @@ if oNewGUI.kSelectedBuild and oNewGUI.kSelectedEquipWeap = 0 and oNewGUI.kSelect
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-
-if oNewGUI.kSelectedBuild and oNewGUI.kSelectedEquipWeap = 0 and oNewGUI.kSelectedEquipTool = 0 {
+            <string>if oNewGUI.kSelectedBuild and oNewGUI.kSelectedEquipWeap = 0 and oNewGUI.kSelectedEquipTool = 0 {
     draw_set_color( make_color_rgb(60,60,60))
     draw_set_blend_mode( bm_add )
     draw_set_halign( fa_left )

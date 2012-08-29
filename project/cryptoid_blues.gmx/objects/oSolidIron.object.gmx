@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 
-this_mat = oMatIron;
+drop_item = sIronoreIcon;
 </string>
           </argument>
         </arguments>

@@ -13,6 +13,5 @@ with (argument3) {
     // add to results:
     global.circle_result[0] += 1;
     global.circle_result[global.circle_result[0]] = id;
-    show_debug_message(argument3)
 }
 return (global.circle_result[0] > 0);

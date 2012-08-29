@@ -51,6 +51,7 @@ physics_fixture_delete(fix)
 setCollisionBounds(-sprite_width/2,-sprite_width/2,sprite_width/2,sprite_width/2)
 calculateCollisionBounds()
 
+slide = sound_add(working_directory + "\audio\slide3.wav", 0, 0);
 </string>
           </argument>
         </arguments>
@@ -75,14 +76,15 @@ calculateCollisionBounds()
             <kind>1</kind>
             <string>velx = abs(phy_linear_velocity_x)
 vely = abs(phy_linear_velocity_y)
-/*
-if velx &lt; 5 {
-    phy_linear_velocity_x = 0
-}
 
-if vely &lt; 5 {
-    phy_linear_velocity_y = 0
-}*/
+if velx &gt; 5 {
+    if sound_isplaying(slide) = 0  {
+        sound_play(slide)
+    }
+} else {
+    if sound_isplaying(slide) = 1
+        sound_fade(slide, 0, 500)
+}
 </string>
           </argument>
         </arguments>

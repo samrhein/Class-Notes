@@ -29,6 +29,7 @@
 instance_create(0,0,oNewInventoryGUI)
 instance_create(0,0,oWeapEquipGUI)
 instance_create(0,0,oToolEquipGUI)
+instance_create(0,0,oBlockHighlight)
 
 draw_set_color( c_white )
 draw_set_font( munro )
@@ -138,7 +139,7 @@ for(i=0;i&lt;oPlayer1.picture_num;i+=1) {
 
 
 // draw current FPS
-draw_text(view_xview[0]+global.winW-30,view_yview[0]+global.winH-30, "FPS " +string(fps))
+draw_text(view_xview[0]+global.winW-30,view_yview[0]+global.winH-60, "FPS " +string(fps))
 
 </string>
           </argument>

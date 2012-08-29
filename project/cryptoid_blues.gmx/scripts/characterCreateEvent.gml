@@ -66,6 +66,10 @@ new_machine = noone
 build_machine = true
 build_switch = false
 
+whoosh = false
+digR = noone
+dig_sound = false
+
 //inventory array: 1st num as 0 is item/as 1 is quantity
 /*potential_inv=10
 inventory[0,0]=oCharcoalIcon

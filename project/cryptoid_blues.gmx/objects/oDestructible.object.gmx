@@ -64,21 +64,25 @@ part_type_direction( crumble_part, 0, 360, 0, 0 );
           <argument>
             <kind>1</kind>
             <string>part_emitter_region( crumble_system,crumble_emitter,x-24,x+24,y-24,y+24,ps_shape_rectangle,ps_distr_linear );
-if this_mat != noone {
-    instance_create(x,y,this_mat);
+if drop_item != noone {
+    item_collect = instance_create(x,y,oItemCollect);
+    item_collect.this_item = drop_item
 }
 
 part_emitter_stream( crumble_system, crumble_emitter, crumble_part, 0 );
 part_emitter_burst( crumble_system, crumble_emitter, crumble_part, 40 );
 
-with(oPlayer1)
+with(oPlayer1) {
     state=STANDING;
+}
+    
+sound_play(global.crumbleR[irandom(1)])
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="3" enumb="2">
       <action>
         <libid>1</libid>
         <id>603</id>

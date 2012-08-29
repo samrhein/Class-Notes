@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>tree_height = irandom(4)+6
+            <string>tree_height = irandom(6)+3
 start=true
 
 wood_block[0]=instance_create(x,y,oSolidStump)
@@ -35,6 +35,10 @@ for(i=1;i&lt;tree_height;i+=1){
     if i &gt; 0 {
         branch_chance = irandom(2)
         branch_side = irandom(2)
+        if i=tree_height-1 {
+            branch_chance = 1
+            branch_side = 2
+        }
         if branch_chance = 1 {
             if branch_side = 0 {
                 instance_create(wood_block[i].x+48, wood_block[i].y, oBranch1)

@@ -1,10 +1,10 @@
 //Camera control
-winH = window_get_height()
-winW = window_get_width()
-topbound = winH*(1/3)
-botbound = winH*(2/3)
-leftbound = winW*(1/3)
-rightbound= winW*(2/3)
+//global.winH = window_get_height()
+//global.winW = window_get_width()
+topbound = global.winH*(1/3)
+botbound = global.winH*(2/3)
+leftbound = global.winW*(1/3)
+rightbound= global.winW*(2/3)
 view_currentx=view_xview[0]
 view_currenty=view_yview[0]
 player_viewposx=oPlayer1.x-view_xview[0]
@@ -34,7 +34,7 @@ if (global.gauntlet != noone) {
         //set camera target based on gauntlet position
         //view_targetx = global.gauntlet.x-24
         //view_targety = global.gauntlet.y+496
-        if player_viewposx > rightbound and view_currentx+winW >= global.gauntlet.x+global.BLOCK_WIDTH*global.CHUNK_WIDTH {
+        if player_viewposx > rightbound and view_currentx+global.winW >= global.gauntlet.x+global.BLOCK_WIDTH*global.CHUNK_WIDTH {
             view_targetx=view_currentx
         }
         if player_viewposx < leftbound and view_currentx <= global.gauntlet.x {

@@ -57,9 +57,9 @@ mat[3] = instance_create(-100,-100,oNewIronIcon)
             <kind>1</kind>
             <string>for(i=0;i&lt;4;i+=1) {
     inv_slot[i].x=view_xview[0]+12+i*54
-    inv_slot[i].y=view_yview[0]+global.winH-60
+    inv_slot[i].y=view_yview[0]+global.winH-100
     mat[i].x=view_xview[0]+12+i*54
-    mat[i].y=view_yview[0]+global.winH-60
+    mat[i].y=view_yview[0]+global.winH-100
 }
 
 
@@ -88,13 +88,13 @@ mat[3] = instance_create(-100,-100,oNewIronIcon)
             <string>draw_set_color( make_color_rgb(60,60,60))
 draw_set_blend_mode( bm_add )
 draw_set_halign( fa_left )
-draw_text( view_xview[0]+18, view_yview[0]+global.winH-94, 'Materials')
+draw_text( view_xview[0]+18, view_yview[0]+global.winH-134, 'Materials')
 
 draw_set_blend_mode( bm_normal )
 draw_set_color( c_white )
 draw_set_halign( fa_right )
 for(i=0;i&lt;4;i+=1) {
-    draw_text( view_xview[0]+56+i*54, view_yview[0]+global.winH-46, string(oPlayer1.inventory[i]))
+    draw_text( view_xview[0]+56+i*54, view_yview[0]+global.winH-86, string(oPlayer1.inventory[i]))
 }
 </string>
           </argument>

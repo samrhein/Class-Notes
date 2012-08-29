@@ -34,7 +34,7 @@ global.CHUNK_HEIGHT = 30;
 
 first_chunk = -1;
 latest_chunk = -1;
-totalChunks = 3;
+totalChunks = 10;
 
 
 global.gauntlet = noone;
@@ -169,7 +169,7 @@ chunkWidth = global.CHUNK_WIDTH;
 barri = instance_find(oPlayer1,0);
 chunkPos = floor((barri.x/blockWidth)/chunkWidth);
 
-gauntletSpacing = 3;
+gauntletSpacing = 5;
 
 /* generate Chunks two ahead */
 if((latest_chunk-2) &lt; chunkPos){
@@ -217,7 +217,11 @@ if((latest_chunk-2) &lt; chunkPos){
         newSet = string_format(newSet,2,0);
     }
     
-    newId = 0;
+    if lvlHeader = "lvlChunk_" {
+        newId = irandom(7)
+    }else{
+        newId = 0
+    }
     if(newId&lt;10){
         newId = "00" + string_format(newId,1,0);
     }else if(newId&lt;100){

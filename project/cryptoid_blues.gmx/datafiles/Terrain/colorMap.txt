@@ -15,4 +15,5 @@
 #00ff00 A oGrassMid
 #c0ff00 B oGrassLeft
 #73d006 C oGrassRight
-#00ffff D oLadderMid
+#009665 D oVines
+#00ffff E oLadderMid

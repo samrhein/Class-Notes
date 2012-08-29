@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 
-this_mat = noone;
+drop_item = noone
 </string>
           </argument>
         </arguments>

@@ -5,7 +5,7 @@ character, sets the sprite index, and sets the animation speed for the sprite.
 */
 if dead = true {
     dead_timer += 1
-    room_speed = 5
+    //room_speed = 5
 }
 if dead_timer > 25 {
     room_restart()
@@ -14,7 +14,7 @@ if dead_timer > 25 {
 kAttack = keyboard_check(ord('R'))
 kAttackPressed = keyboard_check_pressed(ord('R'))
 
-if(oNewGUI.kSelectedEquipWeap=0 and oNewGUI.kSelectedEquipTool=0 and oNewGUI.kSelectedBuild=0 and dead = false){
+if(dead = false){
 if(player=1)
 {
 
@@ -75,64 +75,7 @@ if(player=1)
       kJumpPressed=1
   }
 }
-else //player 2 code
-{
-  //key left
-  kLeftReleased=0
-  if(kLeft)
-  {
-    kLeft=keyboard_check(ord('A'));
-    kLeftPushedSteps+=1;
-    kLeftPressed=0;
-    if (kLeft=0)
-      kLeftReleased=1;
-  }
-  else
-  {
-    kLeft=keyboard_check(ord('A'))
-    if kLeft
-      kLeftPressed=1
-    kLeftPushedSteps=0
-  }
-  //key right
-  kRightReleased=0
-  if kRight
-  {
-    kRight=keyboard_check(ord('D'))
-    kRightPushedSteps+=1
-    kRightPressed=0
-    if kRight=0
-      kRightReleased=1
-  }
-  else
-  {
-    kRight=keyboard_check(ord('D'))
-    if kRight
-      kRightPressed=1
-    kRightPushedSteps=0
-  }
-  //key up
-  kUp=keyboard_check(ord('W'))
-  //key down
-  kDown=keyboard_check(ord('S'))
-  //key "run"
-  if canRun
-    kRun=keyboard_check(ord('F'))
-  else
-    kRun=0
-  //key "jump"
-  if kJump
-  {
-    kJump=keyboard_check(ord('J'))
-    kJumpPressed=0
-  }
-  else
-  {
-    kJump=keyboard_check(ord('J'))
-    if kJump
-      kJumpPressed=1
-  }
-}
+
 //deals with the ladderTimer
 if state=CLIMBING
   ladderTimer=10
@@ -195,22 +138,7 @@ phy_linear_velocity_y=-22
   if kDown {
     phy_linear_velocity_y=120
   }
-}
-
-
-
-
-
-playerphy = string(state)
-if isCollisionBotObj(3,oEnemy){
-    playerphy = 'landed'
-}
-
-    
-
-    
-    
-    
+}  
     
     
 if (isCollisionBottom(3) or isCollisionPlatformBottom(3) and isCollisionPlatform()=0) and platformCharacterIs(IN_AIR) and phy_linear_velocity_y>=0
@@ -313,12 +241,6 @@ if isCollisionLadder() and state=CLIMBING and kJumpPressed
 }
 
 
-
-
-
-
-
-
 //HANGING///////////////////////////////////////////////////////////////////////////////////////////////////
 if state=FALLING and ((isCollisionHangRight()=1 and facing=RIGHT) or (isCollisionHangLeft()=1 and facing=LEFT)) {
     state=HANGING
@@ -348,10 +270,6 @@ if state=HANGING {
     }
 }
     
-    
-
-
-
 //HURT//////////////////////////////////////////////////////////////////////////////
 if hurting {
     if hurt_timer = 1 {
@@ -390,65 +308,67 @@ if pic_take {
 
 
 //Digging code begins here/////////////////////////////////////////////////////////
-kDig = keyboard_check (ord('T'))
-if state=DUCKING and kDig {
-    digableID = instance_position( x, bb+1, oDestructible );
-    if digableID != noone {
-        state=DIGGINGDOWN;
+kMouseL = mouse_check_button( mb_left )
+kMouseR = mouse_check_button( mb_right )
+
+if oBestGUI.drag = true or oBestGUI.build_hover = true {
+    kMouseL = 0
+}
+
+if kMouseL {
+    if oBlockHighlight.dig_side = 0 {
+        facing = RIGHT
+    } else if oBlockHighlight.dig_side = 2 {
+        facing = LEFT
     }
 }
-if state=LOOKING_UP and kDig {
-    digableID = instance_position( x, tb-24, oDestructible );
-    if digableID != noone {
-        state=DIGGINGUP;
+if (state=DIGGING or state=DIGGINGUP or state=DIGGINGDOWN or state=CLAWING) and (oBlockHighlight.dig_block != oBlockHighlight.old_dig_block or oBlockHighlight.dig_block2 != oBlockHighlight.old_dig_block2) {
+    state = STANDING
+}
+
+if (state = STANDING or state = DUCKING) and oBlockHighlight.dig_block != noone and kMouseL {
+    if oBlockHighlight.dig_side = 3 {
+        state=DIGGINGDOWN
     }
 }
-if state=STANDING or state=RUNNING {
-    if kDig {
-        if facing=RIGHT {
-            digableID = instance_position( rb+5, y, oDestructible );
-            digableID2 = instance_position( rb+5, y-20, oDestructible );
-        }else{
-            digableID = instance_position( lb-5, y, oDestructible );
-            digableID2 = instance_position( lb-5, y-20, oDestructible );
-        }
-        if digableID != noone or digableID2 != noone {
-            state=DIGGING;
-        }
+if (state = STANDING or state = LOOKING_UP) and oBlockHighlight.dig_block != noone and kMouseL {
+    if oBlockHighlight.dig_side = 1 {
+        state=DIGGINGUP
+    }
+}
+if (state = STANDING or state = RUNNING) and (oBlockHighlight.dig_block != noone or oBlockHighlight.dig_block2 != noone) and kMouseL {
+    if oBlockHighlight.dig_side = 0 or oBlockHighlight.dig_side = 2 {
+        state=DIGGING
     }
 }
 if state=DIGGING {
-    if kDig = 0
+    if kMouseL = 0
         state=STANDING
 }
 if state=DIGGINGDOWN {
-    if kDig = 0
+    if kMouseL = 0
         state=DUCKING
 }
 if state=DIGGINGUP {
-    if kDig = 0
+    if kMouseL = 0
         state=LOOKING_UP
 }
 if state=DIGGINGDOWN or state=DIGGING or state=DIGGINGUP {
-    if digableID != noone {
-        digableID.digtimer += digSpeed
+    if oBlockHighlight.dig_block != noone {
+        oBlockHighlight.dig_block.digtimer += digSpeed;
     }
 }
 if state=DIGGING {
-    if digableID2 != noone {
-        digableID2.digtimer += digSpeed;
+    if oBlockHighlight.dig_block2 != noone {
+        oBlockHighlight.dig_block2.digtimer += digSpeed;
     }
 }
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 
 //// Building Code starts here ////////////////////////////////////////////////////////////
 if state=STANDING or state=RUNNING {
 kBuild = keyboard_check_pressed (ord('K'))
-if kBuild or (kAttackPressed = 1 and oWeapEquipGUI.selected=4 and oPlayer1.inventory[13]>0) {
+if kBuild {
     if facing=RIGHT {
             blocked = collision_line(x+12,y+20,x+60,y+20,oSolid,false,true)
             if blocked = noone {
@@ -465,27 +385,23 @@ if kBuild or (kAttackPressed = 1 and oWeapEquipGUI.selected=4 and oPlayer1.inven
 }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 // Dynomite code ///////////////////////////////////////////////////////////////////////
-if state=STANDING or state=RUNNING or state=JUMPING or state=FALLING {
+/*if state=STANDING or state=RUNNING or state=JUMPING or state=FALLING {
     kDyno = keyboard_check_pressed (ord('O'))
-    if kDyno or (kAttackPressed = 1 and oWeapEquipGUI.selected=2 and oPlayer1.inventory[11]>0) {
+    if kDyno {
         oPlayer1.inventory[11]-=1
         makeDyno = instance_create( x, y, oDyno )
         dyno_timer=0
     }
 }
-dyno_timer+=1
+dyno_timer+=1*/
 
 // Boomerang Code /////////////////////////////////////////////////////////////////////////
 if state=STANDING or state=RUNNING or state=JUMPING or state=FALLING {
     kBoom = keyboard_check_pressed (ord('B'))
     
-    if kBoom or (kAttackPressed = 1 and oWeapEquipGUI.selected=1 and oPlayer1.inventory[10]>0) {
+    if kBoom {
         if facing = RIGHT {
             oPlayer1.inventory[10]-=1
             makeBoom = instance_create( x+40, y+10, oBoomerang )
@@ -564,38 +480,32 @@ if this_switch != noone {
 }
 
 
-//claw attack code uggggggg //////////
-kClaw = keyboard_check (ord('U'))
-if (kClaw = 1 or (kAttack = 1 and oWeapEquipGUI.selected=0))  and state!=DIGGINGDOWN and state!=DIGGING and state!=DIGGINGUP and state!=CLIMBING and state!=JUMPING and state!=FALLING {
+//claw attack code uggggggg ///////////////////////////////////////////////////////////////////////////
+if kMouseL and oBlockHighlight.dig_block2 = noone and oBlockHighlight.block = noone {
     state=CLAWING
 }
-
 if state=CLAWING {
     if facing = RIGHT {
         claw_enemy = collision_line(x+17,y-35,x+17,y+35,oEnemy,false,true)
     } else {
         claw_enemy = collision_line(x-17,y-35,x-17,y+35,oEnemy,false,true)
     }
-    
     if claw_enemy!=noone {
         with claw_enemy {
             instance_destroy()
         }
     }
 }
-
 if state=CLAWING{
-    if kClaw=0 and kAttack=0 {
+    if kMouseL=0 {
         state=STANDING
     }
 }
 
-
-
-//build some spikez
+//build some spikezzz
 if state=RUNNING or state=STANDING or state=JUMPING or state=FALLING {
 kSpike = keyboard_check_pressed (ord('H'))
-    if kSpike or (kAttackPressed = 1 and oWeapEquipGUI.selected=3 and oPlayer1.inventory[12]>0) {
+    if kSpike {
         if facing=RIGHT {
             blocked = instance_position(x+64,y+20,oSolid)
             if blocked = noone {
@@ -610,6 +520,11 @@ kSpike = keyboard_check_pressed (ord('H'))
             }
         }
     }
+}
+
+//general build based on active inv
+if oBestGUI.active_inv_length > 0 {
+    
 }
 
 
@@ -675,14 +590,18 @@ if facing=RIGHT
   if dead = true
     sprite_index=sDeadRight
 }
-//sets the previous state and the previously previous state
-statePrevPrev=statePrev
-statePrev=state
+
 //calculates the image_speed based on the character's velocity
-if state=RUNNING
+if state=RUNNING {
   image_speed=abs(phy_linear_velocity_x)*runAnimSpeed+0.1
+  if (sound_isplaying(global.stepR[0])=0 and sound_isplaying(global.stepR[1])=0 and sound_isplaying(global.stepR[2])=0 and sound_isplaying(global.stepR[3])=0 and sound_isplaying(global.stepR[4])=0) and (floor(image_index) = 1 or floor(image_index) = 7)  {
+    sound_play(global.stepR[irandom(4)]);
+  }
+}
+
 if state=CLIMBING
   image_speed=(phy_linear_velocity_y+phy_linear_velocity_x)*climbAnimSpeed
+  
 //limit the image_speed at 1 so the animation always looks good
 if image_speed>1
   image_speed=1
@@ -691,3 +610,28 @@ if state=DIGGING or state=DIGGINGDOWN or state=DIGGINGUP or state=HANGING or sta
     image_speed=digAnimSpeed
 if state=STANDING
     image_speed=idleAnimSpeed
+
+if kJump {
+  if whoosh = false  {
+    sound_play(global.jump);
+    whoosh = true
+  }
+} else if platformCharacterIs(ON_GROUND) {
+    whoosh = false
+}
+
+if state=DIGGING or state=DIGGINGDOWN or state=DIGGINGUP {
+    if dig_sound = false {
+        digR = global.dig[irandom(1)]
+        sound_play(digR)
+        dig_sound = true
+    }
+} else if statePrev=DIGGING or statePrev=DIGGINGDOWN or statePrev=DIGGINGUP {
+    dig_sound = false
+    sound_stop(digR)
+}
+
+
+//sets the previous state and the previously previous state
+statePrevPrev=statePrev
+statePrev=state

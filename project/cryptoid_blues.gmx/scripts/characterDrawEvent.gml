@@ -16,7 +16,3 @@ if hurting or pic_take {
 } else {
     draw_sprite(sprite_index,-1,x,y )
 }
-
-
-
-//draw_text(view_xview[0]+global.winW-60,view_yview[0]+global.winH-200, instance_number(oGame) )
